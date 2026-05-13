@@ -450,7 +450,7 @@
 // ══════════════════════════════════════════════════
 //  CONFIGURATION
 // ══════════════════════════════════════════════════
-const DATA_URL = "https://script.google.com/macros/s/AKfycbzmNc64dRBwNLwwWcU7sMCT9tcAvi-vXOc_-W76QUzqgxf29FDbBE0eVypQpGU_Hgtwsg/exec";
+const DATA_URL = "https://script.google.com/macros/s/AKfycbxH6nBcuuf0uG3cHSeh-LniLeLKp_PsreXQP04p5zndHybHU2MRgU4_bGWC5tojGHHt3g/exec";
 
 // ── DEMO DATA (remove once connected to live Sheet) ──
 const DEMO_DATA = [
@@ -489,7 +489,7 @@ let allStudents = [];
 // ── Load data on page start ──
 async function loadData() {
   try {
-    if (DATA_URL === "https://script.google.com/macros/s/AKfycbzmNc64dRBwNLwwWcU7sMCT9tcAvi-vXOc_-W76QUzqgxf29FDbBE0eVypQpGU_Hgtwsg/exec") {
+    if (DATA_URL === "https://script.google.com/macros/s/AKfycbxH6nBcuuf0uG3cHSeh-LniLeLKp_PsreXQP04p5zndHybHU2MRgU4_bGWC5tojGHHt3g/exec") {
       allStudents = DEMO_DATA;
     } else {
       const res  = await fetch(DATA_URL);
