@@ -406,6 +406,11 @@
 
 <div class="wrapper">
 
+  <div class="config-notice">
+    ⚙️ <strong>Setup Required:</strong> Replace <code>PASTE_YOUR_SHEET_JSON_URL_HERE</code> in the script below with your
+    Google Apps Script Web App URL (GET endpoint) that returns student JSON data.
+  </div>
+
   <!-- Search card -->
   <div class="search-card">
     <div class="search-card-header">
@@ -450,7 +455,7 @@
 // ══════════════════════════════════════════════════
 //  CONFIGURATION
 // ══════════════════════════════════════════════════
-const DATA_URL = "https://script.google.com/macros/s/AKfycbxH6nBcuuf0uG3cHSeh-LniLeLKp_PsreXQP04p5zndHybHU2MRgU4_bGWC5tojGHHt3g/exec";
+const DATA_URL = "https://script.google.com/macros/s/AKfycby2CuREzVm5pwMU24b7IN9YNXbaX_hiWx7QVQ6CRPC2owKBA3uAT41f1t723hCWKleEtw/exec";
 
 // ── DEMO DATA (remove once connected to live Sheet) ──
 const DEMO_DATA = [
@@ -489,7 +494,7 @@ let allStudents = [];
 // ── Load data on page start ──
 async function loadData() {
   try {
-    if (DATA_URL === "https://script.google.com/macros/s/AKfycbxH6nBcuuf0uG3cHSeh-LniLeLKp_PsreXQP04p5zndHybHU2MRgU4_bGWC5tojGHHt3g/exec") {
+    if (DATA_URL === "PASTE_YOUR_SHEET_JSON_URL_HERE") {
       allStudents = DEMO_DATA;
     } else {
       const res  = await fetch(DATA_URL);
