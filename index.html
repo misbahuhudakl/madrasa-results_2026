@@ -493,17 +493,30 @@ let allStudents = [];
 
 // ── Load data on page start ──
 async function loadData() {
+  const area = document.getElementById("resultArea");
+  area.innerHTML = `<div class="state-box"><span class="icon">⏳</span><p>Loading student data…</p></div>`;
+  
   try {
-    if (DATA_URL === "PASTE_YOUR_SHEET_JSON_URL_HERE") {
-      allStudents = DEMO_DATA;
-    } else {
-      const res  = await fetch(DATA_URL);
-      const json = await res.json();
-      allStudents = json;
-    }
+    const res  = await fetch(DATA_URL + "?t=" + Date.now(), { redirect: "follow" });
+    const text = await res.text();
+    
+    // Try to parse as JSON
+    const json = JSON.parse(text);
+    
+    if (!Array.isArray(json)) throw new Error("Response is not an array: " + text.slice(0, 100));
+    
+    allStudents = json;
+    area.innerHTML = `<div class="state-box"><span class="icon">📋</span><p>Select a class and student name above<br/>to view their examination result card.<br/><small style="color:var(--green)">✓ ${json.length} student record(s) loaded</small></p></div>`;
+    
   } catch (e) {
-    console.error("Failed to load data:", e);
-    allStudents = DEMO_DATA;
+    console.error("Load error:", e);
+    area.innerHTML = `
+      <div class="state-box">
+        <span class="icon">❌</span>
+        <p>Failed to load data.<br/>
+        <small style="color:var(--red);font-family:'DM Mono',monospace">${e.message}</small><br/><br/>
+        Check that your Apps Script URL is correct and deployed as "Anyone" access.</p>
+      </div>`;
   }
 }
 
